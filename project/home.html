@@ -193,8 +193,30 @@
 
             if(element === "time_"){
                 console.log("begin to load time line...");
-
+                var js = document.createElement('script');
+                js.setAttribute('src','js/time_line.js');
+                document.body.appendChild(js);
             }
+
+            if(element === "creator_"){
+                console.log("load creator names..");
+                var js = document.createElement('script');
+                js.setAttribute('src','js/creator.js');
+                document.body.appendChild(js);
+            }
+
+            if(element === "id_"){
+                var js = document.createElement('script');
+                js.setAttribute('src','js/class.js');
+                document.body.appendChild(js);
+            }
+
+            if(element === "company_"){
+                var js = document.createElement('script');
+                js.setAttribute('src','js/company.js');
+                document.body.appendChild(js);
+            }
+
         });
 
     });
