@@ -142,7 +142,11 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="./js/echarts.min.js"></script>
+
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="js/echarts-wordcloud.min.js"></script>
+<script src="http://echarts.baidu.com/asset/map/js/china.js"></script>
 <script src="./js/bootstrap.js"></script>
 <!--处理slider bar 的事件点击处理-->
 <script type="text/javascript">
@@ -156,10 +160,14 @@
             console.log(link.attr("href") + " is clicked!");
             // 获取视图标题名
             // var chart_title = link.text();
-            if (element !== "index_") {
-                $("#chart_name").html(link.text());
-            } else {
+            if (element === "index_") {
                 $("#chart_name").html("2012-2016专利数据可视化");
+
+            } else if(element === "time_"){
+                $("#chart_name").html("1990-2016年专利申请数量");
+            }
+            else {
+                $("#chart_name").html(link.text());
             }
             $(".textLink").siblings().removeClass('active');
             // var r = $(this).addClass("active").siblings().removeClass('active');
@@ -167,15 +175,36 @@
             $(this).addClass("active");
             $(".chart_div").siblings().removeClass('curr_chart');
             $("#" + element).addClass("curr_chart");
+
+            if(element === "keywords_"){
+                console.log("begin to load the keyword clouds");
+                var word_js = document.createElement('script');
+                word_js.setAttribute('type','text/javascript');
+                word_js.setAttribute('src','js/keywords_cloud.js');
+                document.body.appendChild(word_js);
+            }
+
+            if(element === "area_"){
+                console.log("begin to load the province map...");
+                var js = document.createElement('script');
+                js.setAttribute('src','js/area.js');
+                document.body.appendChild(js);
+            }
+
+            if(element === "time_"){
+                console.log("begin to load time line...");
+
+            }
         });
 
     });
 </script>
-<script src="./js/echarts.min.js"></script>
-<script src="http://echarts.baidu.com/asset/map/js/china.js"></script>
-<script src="js/area.js">
-</script>
-<script src="js/echarts-wordcloud.min.js"></script>
-<script src="js/keywords_cloud.js"></script>
+<!--<script src="./js/echarts.min.js"></script>-->
+<!--<script src="http://echarts.baidu.com/asset/map/js/china.js"></script>-->
+<!--<script src="js/area.js">-->
+<!--</script>-->
+<!--<script src="js/echarts-wordcloud.min.js"></script>-->
+<!--<script src="js/echarts-wordcloud.min.js"></script>-->
+<!--<script src="js/keywords_cloud.js"></script>-->
 </body>
 </html>
