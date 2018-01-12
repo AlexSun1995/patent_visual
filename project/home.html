@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ch" xmlns:font-family="http://www.w3.org/1999/xhtml">
+<html lang="ch" xmlns:font-family="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +13,7 @@
     <link href="./css/bootstrap.css" rel="stylesheet">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- Custom styles for this template -->
-    <link href="dashboard.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -143,6 +143,24 @@
         <div class="chart_div" id="agent_man_">
             <h1 class="appleStyle"> agent_man word cloud</h1>
         </div>
+
+        <div class="chart_div" id="search_">
+            <div class="my_search_box">
+                <form id="search-form">
+                    <label class="input-group" id="input_text">
+                        <input type="text" id="search-text-value" class="form-control" placeholder="
+                          2015年专利数据搜索" aria-describedby="btn-go" name="q">
+                        <span class="btn btn-info input-group-addon" id="btn-go" onclick="submitSearchKey()"
+                        >Go
+                        </span>
+                    </label>
+                </form>
+            </div>
+            <div id="info" align="left">
+                <!--<h1 class="appleStyle"> info center </h1>-->
+
+            </div>
+        </div>
     </div>
 </div>
 <!-- Bootstrap core JavaScript
@@ -170,8 +188,10 @@
             if (element === "index_") {
                 $("#chart_name").html("2012-2016专利数据可视化");
 
-            } else if(element === "time_"){
+            } else if (element === "time_") {
                 $("#chart_name").html("1990-2016年专利申请数量");
+            } else if (element === "search_") {
+                $("#chart_name").html("<h2 class='appleStyle'>2015 Patent Data Search</h2>");
             }
             else {
                 $("#chart_name").html(link.text());
@@ -183,59 +203,64 @@
             $(".chart_div").siblings().removeClass('curr_chart');
             $("#" + element).addClass("curr_chart");
 
-            if(element === "keywords_"){
+            if (element === "keywords_") {
                 console.log("begin to load the keyword clouds");
                 var word_js = document.createElement('script');
-                word_js.setAttribute('type','text/javascript');
-                word_js.setAttribute('src','js/keywords_cloud.js');
+                word_js.setAttribute('type', 'text/javascript');
+                word_js.setAttribute('src', 'js/keywords_cloud.js');
                 document.body.appendChild(word_js);
             }
 
-            if(element === "area_"){
+            if (element === "area_") {
                 console.log("begin to load the province map...");
                 var js = document.createElement('script');
-                js.setAttribute('src','js/area.js');
+                js.setAttribute('src', 'js/area.js');
                 document.body.appendChild(js);
             }
 
-            if(element === "time_"){
+            if (element === "time_") {
                 console.log("begin to load time line...");
                 var js = document.createElement('script');
-                js.setAttribute('src','js/time_line.js');
+                js.setAttribute('src', 'js/time_line.js');
                 document.body.appendChild(js);
             }
 
-            if(element === "creator_"){
+            if (element === "creator_") {
                 console.log("load creator names..");
                 var js = document.createElement('script');
-                js.setAttribute('src','js/creator.js');
+                js.setAttribute('src', 'js/creator.js');
                 document.body.appendChild(js);
             }
 
-            if(element === "id_"){
+            if (element === "id_") {
                 var js = document.createElement('script');
-                js.setAttribute('src','js/id.js');
+                js.setAttribute('src', 'js/id.js');
                 document.body.appendChild(js);
             }
 
-            if(element === "company_"){
+            if (element === "company_") {
                 var js = document.createElement('script');
-                js.setAttribute('src','js/company.js');
+                js.setAttribute('src', 'js/company.js');
                 document.body.appendChild(js);
             }
 
-            if(element === "type_"){
+            if (element === "type_") {
                 var js = document.createElement('script');
-                js.setAttribute('src','js/type.js');
+                js.setAttribute('src', 'js/type.js');
                 document.body.appendChild(js);
             }
 
-            if(element === "agent_man_"){
+            if (element === "agent_man_") {
                 var js = document.createElement('script');
-                js.setAttribute('src','js/agent_man.js');
+                js.setAttribute('src', 'js/agent_man.js');
                 document.body.appendChild(js);
             }
 
+            if(element === "search_"){
+                var js = document.createElement('script');
+                js.setAttribute('src','js/search.js');
+                document.body.appendChild(js);
+            }
         });
 
     });

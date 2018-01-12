@@ -129,9 +129,18 @@ body {
 
 .appleStyle {
   font-family: Monaco,serif;
+  color: #595959;
+  text-shadow: 0 8px 9px #c2b29c, 0px -2px 1px #fff;
+  text-align: match-parent;
+  position: inherit;
 }
 
 #myCarousel.carousel.slide{
   margin-left: 15%;
   display: inherit;
+}
+.my_search_box{
+  height: 54px;
+  width: 80%;
+  position: relative;
 }
