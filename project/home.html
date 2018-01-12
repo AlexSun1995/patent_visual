@@ -80,6 +80,7 @@
                 <li class="textLink"><a href="#time" class="textLink">时间视图</a></li>
                 <li class="textLink"><a href="#type" class="textLink">类型视图</a></li>
                 <li class="textLink"><a href="#keywords" class="textLink">关键词视图</a></li>
+                <li class="textLink"><a href="#agent_man" class="textLink">代理人视图</a></li>
                 <li class="textLink"><a href="#search" class="textLink">数据搜索</a></li>
             </ul>
             <div id="creator">
@@ -134,7 +135,13 @@
             <h1>the creator</h1>
         </div>
         <div class="chart_div" id="keywords_">
-            <h1>keyword cloud</h1>
+            <h1 class="appleStyle">keywords word cloud</h1>
+        </div>
+        <div class="chart_div" id="type_">
+            <h1 class="appleStyle"> type pieChart</h1>
+        </div>
+        <div class="chart_div" id="agent_man_">
+            <h1 class="appleStyle"> agent_man word cloud</h1>
         </div>
     </div>
 </div>
@@ -207,13 +214,25 @@
 
             if(element === "id_"){
                 var js = document.createElement('script');
-                js.setAttribute('src','js/class.js');
+                js.setAttribute('src','js/id.js');
                 document.body.appendChild(js);
             }
 
             if(element === "company_"){
                 var js = document.createElement('script');
                 js.setAttribute('src','js/company.js');
+                document.body.appendChild(js);
+            }
+
+            if(element === "type_"){
+                var js = document.createElement('script');
+                js.setAttribute('src','js/type.js');
+                document.body.appendChild(js);
+            }
+
+            if(element === "agent_man_"){
+                var js = document.createElement('script');
+                js.setAttribute('src','js/agent_man.js');
                 document.body.appendChild(js);
             }
 

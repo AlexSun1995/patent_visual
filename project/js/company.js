@@ -145,8 +145,8 @@ function showChart(result) {
             trigger: 'item'
         },
         dataRange: {
-            min: 0,
-            max: 100,
+            min: 300,
+            max: 10000,
             x: 'left',
             y: 'bottom',
             text: ['高', '低'],           // 文本，默认为数值文本
@@ -157,7 +157,7 @@ function showChart(result) {
             name: '关键词',
             type: 'wordCloud',
             //size: ['9%', '99%'],
-            sizeRange: [12, 80],
+            sizeRange: [30, 200],
             //textRotation: [0, 45, 90, -45],
             rotationRange: [-45, 90],
             shape: 'circle',

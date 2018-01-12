@@ -1,23 +1,23 @@
-var word_chart = echarts.init(document.getElementById('keywords_'));
+var creator_chart = echarts.init(document.getElementById('agent_man_'));
+creator_chart.showLoading();
 window.onresize = function () {
-    console.log("keyword size changed");
-    word_chart.resize();
+    console.log("agent_man_ size changed");
+    creator_chart.resize();
 };
-word_chart.showLoading();
-$.get("http://139.199.69.206:8080/keywordstop").done(function (data) {
-    //console.log(data);
+
+$.get("http://139.199.69.206:8080/agentmantop", function (data) {
     var result = [];
-    for(var i =0;i<data.length;i++){
+    for (var i = 0; i < data.length; i++) {
         var tmp = {};
-        tmp.name = data[i].keywords_name;
-        tmp.value = data[i].keywords_count;
+        tmp.name = data[i].agent_name;
+        tmp.value = data[i].agent_count;
         result.push(tmp);
     }
     console.log(result);
-    word_chart.hideLoading();
+    creator_chart.hideLoading();
     var option = {
         title: {
-            text: '关键词指数',
+            text: '热门代理人视图',
             x: 'center',
             textStyle: {
                 fontSize: 23
@@ -29,18 +29,18 @@ $.get("http://139.199.69.206:8080/keywordstop").done(function (data) {
         },
         dataRange: {
             min: 0,
-            max: 30000,
+            max: 100,
             x: 'left',
             y: 'bottom',
-            text: ['高', '低'],
+            text: ['高', '低'],           // 文本，默认为数值文本
             calculable: true
         },
         backgroundColor: '#F7F7F7',
         series: [{
-            name: '关键词',
+            name: '代理人姓名',
             type: 'wordCloud',
             //size: ['9%', '99%'],
-            sizeRange: [10, 150],
+            sizeRange: [20, 100],
             //textRotation: [0, 45, 90, -45],
             rotationRange: [-45, 90],
             shape: 'circle',
@@ -68,5 +68,5 @@ $.get("http://139.199.69.206:8080/keywordstop").done(function (data) {
             data: result
         }]
     };
-    word_chart.setOption(option);
+    creator_chart.setOption(option);
 });

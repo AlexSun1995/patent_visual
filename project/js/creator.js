@@ -1,24 +1,20 @@
-// 热门发明人视图
-var data = [];
-keywords = {
-    "不公告发明人":39791,
-    "不公告设计人":25114,
-    "张伟":12252,
-    "王伟":10861,
-    "王勇":10006,
-    "王磊":9576,
-    "李伟":9563,
-    "张磊":9283
+var creator_chart = echarts.init(document.getElementById('creator_'));
+creator_chart.showLoading();
+window.onresize = function () {
+    console.log("creator size changed");
+    creator_chart.resize();
 };
-for (var key in keywords) {0
-    data.push({
-        name: key,
-        value: Math.sqrt(keywords[key])
-    })
-}
-// var maskImage = new Image();
-// maskImage.src = 'imgs/key.png';
-function  showChart(data) {
+
+$.get("http://139.199.69.206:8080/creatortop", function (data) {
+    var result = [];
+    for (var i = 0; i < data.length; i++) {
+        var tmp = {};
+        tmp.name = data[i].creator_name;
+        tmp.value = data[i].creator_count;
+        result.push(tmp);
+    }
+    console.log(result);
+    creator_chart.hideLoading();
     var option = {
         title: {
             text: '热门发明人',
@@ -28,7 +24,7 @@ function  showChart(data) {
             }
 
         },
-        tooltip:{
+        tooltip: {
             trigger: 'item'
         },
         dataRange: {
@@ -44,7 +40,7 @@ function  showChart(data) {
             name: '发明人姓名',
             type: 'wordCloud',
             //size: ['9%', '99%'],
-            sizeRange: [12, 80],
+            sizeRange: [12, 150],
             //textRotation: [0, 45, 90, -45],
             rotationRange: [-45, 90],
             shape: 'circle',
@@ -56,7 +52,7 @@ function  showChart(data) {
             },
             textStyle: {
                 normal: {
-                    color: function() {
+                    color: function () {
                         return 'rgb(' + [
                             Math.round(Math.random() * 160),
                             Math.round(Math.random() * 160),
@@ -69,15 +65,8 @@ function  showChart(data) {
                     shadowColor: '#333'
                 }
             },
-            data: data
+            data: result
         }]
     };
-    var creator_chart = echarts.init(document.getElementById('creator_'));
     creator_chart.setOption(option);
-
-    window.onresize = function() {
-        console.log("creator size changed");
-        creator_chart.resize();
-    };
-}
-showChart(data);
+});

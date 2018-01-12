@@ -1,22 +1,20 @@
-
-function createData(result) {
-    var ans = [];
-    for(i=0;i<result.length;i++){
-        var data;
-        data["value"] = result[i].value;
-        data["name"] = result[i].name;
-        ans.push(data);
-        for(var j=0;j<20;j++){
-            console.log("just wait...");
-        }
+var myCharts = echarts.init(document.getElementById('area_'));
+myCharts.showLoading();
+$.get("http://139.199.69.206:8080/allchinesearea", function (data) {
+    result = [];
+    for (var i = 0; i < data.length; i++) {
+        result.push({
+            name: data[i].area,
+            value: data[i].area_count
+        })
     }
-    return ans;
-}
-
-function showChart(result) {
+    result.push({
+       name: "江苏",
+       value: 1451675
+    });
     console.log(result);
     // getForeign(result.foreign)
-    var myCharts = echarts.init(document.getElementById('area_'));
+    myCharts.hideLoading();
     var option = {
         title: {
             text: '专利地域分布',
@@ -31,8 +29,8 @@ function showChart(result) {
             data: ['专利']
         },
         dataRange: {
-            min: 0,
-            max: 10000,
+            min: 100,
+            max: 1000000,
             x: 'left',
             y: 'bottom',
             text: ['高', '低'],           // 文本，默认为数值文本
@@ -72,27 +70,5 @@ function showChart(result) {
         ]
     };
     myCharts.setOption(option);
-}
+});
 
-var testData = [
-    {name: "北京", value: Math.round(Math.random() * 1000)},
-    {name: "天津", value: Math.round(Math.random() * 1000)},
-    {name: '上海', value: Math.round(Math.random() * 1000)},
-    {name: '重庆', value: Math.round(Math.random() * 1000)},
-    {name: '河北', value: Math.round(Math.random() * 1000)},
-    {name: '安徽', value: Math.round(Math.random() * 1000)},
-    {name: '新疆', value: Math.round(Math.random() * 1000)},
-    {name: '浙江', value: Math.round(Math.random() * 1000)},
-    {name: '江西', value: Math.round(Math.random() * 1000)},
-    {name: '山西', value: Math.round(Math.random() * 1000)},
-    {name: '内蒙古', value: Math.round(Math.random() * 1000)},
-    {name: '吉林', value: Math.round(Math.random() * 1000)},
-    {name: '福建', value: Math.round(Math.random() * 1000)},
-    {name: '广东', value: Math.round(Math.random() * 1000)},
-    {name: '西藏', value: Math.round(Math.random() * 1000)},
-    {name: '四川', value: Math.round(Math.random() * 1000)},
-    {name: '宁夏', value: Math.round(Math.random() * 1000)},
-    {name: '香港', value: Math.round(Math.random() * 1000)},
-    {name: '澳门', value: Math.round(Math.random() * 1000)}
-];
-showChart(testData);
